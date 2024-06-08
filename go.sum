@@ -1,0 +1,4 @@
+github.com/microsoft/go-crypto-openssl v0.2.9 h1:pzWgU+PLq61DzuhfZM7L7nyr3DrQoa4Ln75gCwsvvjs=
+github.com/microsoft/go-crypto-openssl v0.2.9/go.mod h1:xOSmQnWz4xvNB2+KQN2g2UUwMG9vqDHBk9nk/NdmyRw=
+golang.org/x/crypto v0.24.0 h1:mnl8DM0o513X8fdIkmyFE/5hTYxbwYOjDS/+rK6qpRI=
+golang.org/x/crypto v0.24.0/go.mod h1:Z1PMYSOR5nyMcyAVAIQSKCDwalqy85Aqn1x3Ws4L5DM=
