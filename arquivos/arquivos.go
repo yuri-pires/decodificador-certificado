@@ -14,7 +14,7 @@ func LerArquivoPfx(path string) ([]byte, error) {
 	return certificado, nil
 }
 
-func SalvarCertificadosEmArquivo(certificado string) {
+func SalvarCertificadosEmArquivoPEM(certificado string) {
 	arquivo, err := os.OpenFile("certificado-fullchain.pem", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0777)
 
 	if err != nil {

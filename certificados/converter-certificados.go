@@ -8,7 +8,7 @@ import (
 	"log"
 )
 
-func SalvarCertificadoPEM(pemBlock *pem.Block) string {
+func ConverterESalvarCertificadoPEM(pemBlock *pem.Block) string {
 	pemData := pem.EncodeToMemory(&pem.Block{
 		Type:  pemBlock.Type,
 		Bytes: pemBlock.Bytes,
@@ -18,11 +18,11 @@ func SalvarCertificadoPEM(pemBlock *pem.Block) string {
 		log.Fatalf("Erro ao criar certificado certificado")
 	}
 
-	arquivos.SalvarCertificadosEmArquivo(string(pemData))
+	arquivos.SalvarCertificadosEmArquivoPEM(string(pemData))
 	return string(pemData)
 }
 
-func SalvarPrivateKey(pemBlock *pem.Block) string {
+func ConverterESalvarPrivateKey(pemBlock *pem.Block) string {
 	var privateKeyPEM []byte
 
 	// Decodificar a chave privada, tentativa em dois formatos
@@ -44,6 +44,6 @@ func SalvarPrivateKey(pemBlock *pem.Block) string {
 		log.Fatalf("Tipo de chave privada não suportado")
 	}
 
-	arquivos.SalvarCertificadosEmArquivo(string(privateKeyPEM))
+	arquivos.SalvarCertificadosEmArquivoPEM(string(privateKeyPEM))
 	return string(privateKeyPEM)
 }

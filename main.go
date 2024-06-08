@@ -32,13 +32,13 @@ func main() {
 
 	for _, pemBlock := range pemBlocks {
 		if pemBlock.Type == "CERTIFICATE" {
-			certificado := certificados.SalvarCertificadoPEM(pemBlock)
+			certificado := certificados.ConverterESalvarCertificadoPEM(pemBlock)
 
 			fmt.Println("Certificado salvo com sucesso: \n", certificado)
 		}
 
 		if pemBlock.Type == "PRIVATE KEY" {
-			privateKey := certificados.SalvarPrivateKey(pemBlock)
+			privateKey := certificados.ConverterESalvarPrivateKey(pemBlock)
 			fmt.Println("Chave privada salva com sucesso: \n", privateKey)
 		}
 	}
