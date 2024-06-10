@@ -48,29 +48,59 @@ Após compilar o projeto, você pode usar o executável gerado para decodificar 
 
 Para fim de estudo, os comandos utilizamos no projeto com as bibliotecas **crypto, pem e x509** podem ser transcrevidos também no terminal, para uma extracão manual.Os seguintes comandos do OpenSSL são usados para extrair as diferentes partes do arquivo PFX:
 
-#### Extração da chave privada:
+### Extração da chave privada:
 
 ```bash
 openssl pkcs12 -in seu_certificado.pfx -nocerts -out chave_privada_encrypted.key
 ```
 
-#### Decriptacão da chave privada
+- **openssl pkcs12**: Chama o comando OpenSSL para manipulação de arquivos PKCS#12 (.pfx ou .p12).
+
+- **-in seu_certificado.pfx**: Especifica o arquivo de entrada, que é o arquivo PFX contendo a chave privada e os certificados.
+- **-nocerts**: Indica que não devem ser extraídos certificados, apenas a chave privada.
+- **-out chave_privada_encrypted.key**: Define o nome do arquivo de saída para a chave privada criptografada.
+
+### Decriptacão da chave privada
 
 ```bash
 openssl rsa -in chave_privada_encrypted.key -out chave_privada.key
 ```
 
-#### Extração do certificado:
+- **openssl rsa**: Chama o comando OpenSSL para manipulação de chaves RSA.
+- **-in chave_privada_encrypted.key**: Especifica o arquivo de entrada, que é a chave privada criptografada.
+- **-out chave_privada.key**: Define o nome do arquivo de saída para a chave privada decriptada.
+
+### Extração do certificado:
 
 ```bash
 openssl pkcs12 -in seu_certificado.pfx -clcerts -nokeys -out certificado.crt
 ```
 
-#### Extração da cadeia de certificados autenticadora(CA):
+- **openssl pkcs12**: Chama o comando OpenSSL para manipulação de arquivos PKCS#12 (.pfx ou .p12).
+- **-in seu_certificado.pfx**: Especifica o arquivo de entrada, que é o arquivo PFX.
+- **-clcerts**: Indica que devem ser extraídos apenas os certificados de cliente, omitindo quaisquer certificados de CA.
+- **-nokeys**: Indica que não devem ser extraídas chaves privadas.
+- **-out certificado.crt**: Define o nome do arquivo de saída para o certificado.
+
+### Extração da cadeia de certificados autenticadora(CA):
 
 ```bash
 openssl pkcs12 -in seu_certificado.pfx -cacerts -nokeys -out cadeia_ca.crt
 ```
+
+- **openssl pkcs12**: Chama o comando OpenSSL para manipulação de arquivos PKCS#12 (.pfx ou .p12).
+- **-in seu_certificado.pfx**: Especifica o arquivo de entrada, que é o arquivo PFX.
+- **-cacerts**: Indica que devem ser extraídos apenas os certificados de autoridades certificadoras (CA).
+- **-nokeys**: Indica que não devem ser extraídas chaves privadas.
+- **-out cadeia_ca.crt**: Define o nome do arquivo de saída para a cadeia de certificados de autoridade (CA).
+
+#### Caso o arquivo gerado esteja vazio, significa que o certificado da Unidade Certificadora (CA), não foi anexado ao .pfx pelo
+
+### Criar uma cadeia única de certificados
+
+Nessa etapa, é possível copiar e colar o conteúdo de cada arquivo gerado **(certificado.crt, chave_privada.crt, cadeia_ca.crt)**, em um único arquivo chamado fullchain.pem ou .crt.
+
+Dessa forma, todo o arquivo .pfx será convertido em um único arquivo legível e passível de uso nos mais diversos sites.
 
 ## Contribuindo
 
